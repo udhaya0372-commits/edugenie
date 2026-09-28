@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ app_name }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script defer src="/static/css/js/app.js"></script>
+</head>
+<body>
+    <div class="page">
+        <header class="header">
+            <div class="brand">
+                <div class="brand-icon">E</div>
+                <div>
+                    <h1>{{ app_name }}</h1>
+                    <p>Your AI learning workspace</p>
+                </div>
+            </div>
+            <div class="status{% if not ai_ready %} unavailable{% endif %}">
+                <span class="status-dot"></span>
+                <span>{% if ai_ready %}API ready{% else %}API key required{% endif %}</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="hero">
+                <span class="badge">POWERED BY GEMINI</span>
+                <h2>Turn questions into <span>real learning.</span></h2>
+                <p>Get clear explanations, reliable answers, quick summaries, quizzes, and a learning path tailored to what you want to master.</p>
+            </section>
+
+            <section class="workspace">
+                <div class="input-card">
+                    <div class="card-header">
+                        <h3>What would you like to learn?</h3>
+                        <p>Choose a tool, enter your question or topic, and generate a response.</p>
+                    </div>
+
+                    <label for="featureSelect">Learning tool</label>
+                    <select id="featureSelect">
+                        <option value="qa">Ask a question</option>
+                        <option value="explain">Explain a topic</option>
+                        <option value="quiz">Create a quiz</option>
+                        <option value="summary">Summarize text</option>
+                        <option value="recommendations">Build a learning path</option>
+                    </select>
+
+                    <label for="inputText">Your input</label>
+                    <textarea id="inputText" maxlength="{{ max_input_chars }}" placeholder="Enter a question, topic, or passage..."></textarea>
+
+                    <div class="input-footer">
+                        <span id="characterCount">0 / {{ max_input_chars }}</span>
+                        <button class="secondary-button" id="clearButton" type="button">Clear</button>
+                        <button class="primary-button" id="generateButton" type="button">Generate</button>
+                    </div>
+                </div>
+
+                <div class="result-card hidden" id="resultCard" aria-live="polite"></div>
+            </section>
+
+            <section class="features">
+                <article class="feature-card">
+                    <div class="feature-icon">Q</div>
+                    <h3>Clear answers</h3>
+                    <p>Ask direct questions and get focused explanations.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">E</div>
+                    <h3>Simple concepts</h3>
+                    <p>Turn difficult ideas into approachable lessons.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">?</div>
+                    <h3>Active practice</h3>
+                    <p>Generate quizzes and check your understanding.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">P</div>
+                    <h3>Clear direction</h3>
+                    <p>Receive an ordered path for your next steps.</p>
+                </article>
+            </section>
+        </main>
+
+        <footer class="footer">{{ app_name }} learning assistant</footer>
+    </div>
+</body>
+</html>
